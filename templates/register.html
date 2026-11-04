@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Account - Bliss Card{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card" style="max-width: 540px;">
+    <div class="auth-header">
+      <h1>Join Bliss Card</h1>
+      <p>Register as a Buyer or artisan Seller</p>
+    </div>
+
+    <form id="register-form" novalidate>
+      <div class="form-group">
+        <label for="reg-role" class="form-label">I want to join as</label>
+        <select id="reg-role" class="form-control" style="cursor: pointer;">
+          <option value="buyer">🛍️ Buyer (Browse, shop & order cards)</option>
+          <option value="seller">✨ Seller (Sell cards & manage my products)</option>
+        </select>
+        <span class="form-text">Choose Seller if you want to publish cards and manage your own inventory.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-username" class="form-label">Username *</label>
+        <input 
+          type="text" 
+          id="reg-username" 
+          class="form-control" 
+          placeholder="e.g. creative_artisan" 
+          required 
+          autocomplete="username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="reg-email" class="form-label">Email Address (Optional)</label>
+        <input 
+          type="email" 
+          id="reg-email" 
+          class="form-control" 
+          placeholder="name@example.com" 
+          autocomplete="email"
+        />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label for="reg-password" class="form-label">Password *</label>
+          <input 
+            type="password" 
+            id="reg-password" 
+            class="form-control" 
+            placeholder="Min 6 characters" 
+            required 
+            autocomplete="new-password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="reg-password-confirm" class="form-label">Confirm Password *</label>
+          <input 
+            type="password" 
+            id="reg-password-confirm" 
+            class="form-control" 
+            placeholder="Repeat password" 
+            required 
+            autocomplete="new-password"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-phone" class="form-label">Phone Number (Optional)</label>
+        <input 
+          type="tel" 
+          id="reg-phone" 
+          class="form-control" 
+          placeholder="+1 555-0199" 
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="reg-address" class="form-label">Default Shipping Address (Optional)</label>
+        <textarea 
+          id="reg-address" 
+          class="form-control" 
+          rows="2" 
+          placeholder="Street address, apartment, city, zip"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 0.5rem;">
+        Create Account
+      </button>
+
+      <div style="text-align: center; margin-top: 1.25rem; font-size: 0.9rem; color: var(--text-secondary);">
+        Already have an account? <a href="/login/" style="font-weight: 600;">Sign in here</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}
+

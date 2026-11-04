@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard - Bliss Card{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 1.5rem; padding-bottom: 3rem;" id="admin-dashboard-container">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+    <div>
+      <span class="badge badge-admin" style="margin-bottom: 0.4rem;">Administrator Control</span>
+      <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary);">
+        System Overview & Management
+      </h1>
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+      <a href="/admin/" target="_blank" class="btn btn-sm btn-secondary">
+        ⚙ Django Admin Panel ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Key Statistics Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-header">
+        <span class="stat-label">Total Revenue</span>
+        <span class="stat-icon">💰</span>
+      </div>
+      <div class="stat-value" id="stat-revenue">$0.00</div>
+      <div class="stat-subtext">Excludes cancelled orders</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <span class="stat-label">Total Orders</span>
+        <span class="stat-icon">📦</span>
+      </div>
+      <div class="stat-value" id="stat-orders">0</div>
+      <div class="stat-subtext">Lifetime platform orders</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <span class="stat-label">Pending Orders</span>
+        <span class="stat-icon">⏳</span>
+      </div>
+      <div class="stat-value" id="stat-pending" style="color: #b45309;">0</div>
+      <div class="stat-subtext">Requiring seller fulfillment</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <span class="stat-label">Total Users</span>
+        <span class="stat-icon">👥</span>
+      </div>
+      <div class="stat-value" id="stat-users">0</div>
+      <div class="stat-subtext" id="stat-users-subtext">0 sellers · 0 buyers</div>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="dashboard-tabs">
+    <button class="dashboard-tab active" data-tab="tab-orders" onclick="switchDashboardTab('tab-orders')">
+      All Orders
+    </button>
+    <button class="dashboard-tab" data-tab="tab-products" onclick="switchDashboardTab('tab-products')">
+      Products Directory
+    </button>
+    <button class="dashboard-tab" data-tab="tab-users" onclick="switchDashboardTab('tab-users')">
+      Registered Accounts
+    </button>
+  </div>
+
+  <!-- Tab 1: Orders -->
+  <div class="tab-pane active" id="tab-orders">
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Buyer</th>
+            <th>Total Amount</th>
+            <th>Date Placed</th>
+            <th>Change Status</th>
+            <th>Current Status</th>
+          </tr>
+        </thead>
+        <tbody id="admin-orders-tbody">
+          <tr><td colspan="6" style="text-align:center;padding:2rem;">Loading platform orders...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 2: Products -->
+  <div class="tab-pane" id="tab-products">
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Product Title</th>
+            <th>Seller</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="admin-products-tbody">
+          <tr><td colspan="6" style="text-align:center;padding:2rem;">Loading platform products...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 3: Users -->
+  <div class="tab-pane" id="tab-users">
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Phone</th>
+            <th>Date Joined</th>
+          </tr>
+        </thead>
+        <tbody id="admin-users-tbody">
+          <tr><td colspan="5" style="text-align:center;padding:2rem;">Loading accounts...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/orders.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+

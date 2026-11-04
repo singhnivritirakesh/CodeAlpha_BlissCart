@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Bliss Card - Handcrafted & Luxury Greeting Cards{% endblock %}</title>
+  
+  <!-- Modern Clean Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">
+        <span class="brand-icon">✦</span>
+        <span>Bliss Card</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links">
+        <li><a href="/">Explore Cards</a></li>
+        <li><a href="/orders/">My Orders</a></li>
+      </ul>
+
+      <!-- Nav Actions (Cart, Auth, Mobile Toggle) -->
+      <div class="nav-actions">
+        <!-- Shopping Cart Icon/Pill -->
+        <a href="/cart/" class="cart-pill" id="nav-cart-pill" title="View Shopping Cart">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span>Cart</span>
+          <span class="cart-count" id="cart-item-count">0</span>
+        </a>
+
+        <!-- User Authentication Dynamic Container -->
+        <div id="nav-auth-container">
+          <a href="/login/" class="btn btn-sm btn-outline">Login</a>
+          <a href="/register/" class="btn btn-sm btn-primary">Sign Up</a>
+        </div>
+
+        <!-- Mobile Toggle Button -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-menu-links">
+        <li><a href="/">Explore Cards</a></li>
+        <li><a href="/orders/">My Orders</a></li>
+        <li><a href="/cart/">Shopping Cart</a></li>
+        <div id="mobile-nav-auth-container"></div>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main style="flex: 1;">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div>
+        <div style="font-weight: 800; font-size: 1.15rem; color: var(--secondary); margin-bottom: 0.35rem;">✦ Bliss Card</div>
+        <p style="color: var(--text-secondary); max-width: 400px; font-size: 0.85rem;">
+          Handcrafted greeting cards, luxury gift boxes, and meaningful stationery created by independent artisans.
+        </p>
+      </div>
+      <div>
+        <div style="font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">Quick Demo Logins</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+          Admin: <code>admin / admin123</code><br>
+          Seller: <code>seller_john / seller123</code><br>
+          Buyer: <code>buyer_bob / buyer123</code>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Bliss Card E-Commerce Platform. Built with Django & Vanilla JS.
+    </div>
+  </footer>
+
+  <!-- Base JS Scripts -->
+  <script src="{% static 'js/api.js' %}"></script>
+  <script src="{% static 'js/cart.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
+

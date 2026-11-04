@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign In - Bliss Card{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Welcome Back</h1>
+      <p>Sign in to your Bliss Card account</p>
+    </div>
+
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label for="login-username" class="form-label">Username</label>
+        <input 
+          type="text" 
+          id="login-username" 
+          class="form-control" 
+          placeholder="Enter your username" 
+          required 
+          autocomplete="username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="login-password" class="form-label">Password</label>
+        <input 
+          type="password" 
+          id="login-password" 
+          class="form-control" 
+          placeholder="Enter your password" 
+          required 
+          autocomplete="current-password"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 0.5rem;">
+        Sign In
+      </button>
+
+      <div style="text-align: center; margin-top: 1.25rem; font-size: 0.9rem; color: var(--text-secondary);">
+        Don't have an account? <a href="/register/" style="font-weight: 600;">Create an account</a>
+      </div>
+    </form>
+
+    <!-- Quick-Fill Demo Chips for Instant Testing -->
+    <div class="demo-accounts">
+      <div class="demo-accounts-title">1-Click Test Accounts:</div>
+      <div class="demo-chips">
+        <button type="button" class="demo-chip" onclick="fillDemoCredentials('admin', 'admin123')">
+          👑 Admin (admin)
+        </button>
+        <button type="button" class="demo-chip" onclick="fillDemoCredentials('seller_john', 'seller123')">
+          🛍️ Seller (seller_john)
+        </button>
+        <button type="button" class="demo-chip" onclick="fillDemoCredentials('seller_alice', 'seller123')">
+          🎨 Seller (seller_alice)
+        </button>
+        <button type="button" class="demo-chip" onclick="fillDemoCredentials('buyer_bob', 'buyer123')">
+          🛒 Buyer (buyer_bob)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}
+

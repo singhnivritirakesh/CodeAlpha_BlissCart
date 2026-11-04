@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - Bliss Card{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 1.5rem; padding-bottom: 3rem;">
+  <div class="breadcrumbs">
+    <a href="/">Home</a> <span>/</span>
+    <a href="/cart/">Cart</a> <span>/</span>
+    <span style="color: var(--text-primary); font-weight: 500;">Checkout</span>
+  </div>
+
+  <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem;">
+    Complete Your Order
+  </h1>
+  <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+    Enter your delivery details to complete your handcrafted greeting card order.
+  </p>
+
+  <div class="checkout-layout">
+    <!-- Left: Shipping Information Form -->
+    <div class="card">
+      <div class="card-header">
+        <h2 style="font-size: 1.15rem; font-weight: 700;">1. Shipping & Contact Information</h2>
+      </div>
+      <div class="card-body">
+        <form id="checkout-form" novalidate>
+          <div class="form-group">
+            <label for="checkout-name" class="form-label">Full Name *</label>
+            <input 
+              type="text" 
+              id="checkout-name" 
+              class="form-control" 
+              placeholder="e.g. Eleanor Vance" 
+              required 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="checkout-address" class="form-label">Street Address *</label>
+            <textarea 
+              id="checkout-address" 
+              class="form-control" 
+              rows="3" 
+              placeholder="Street address, apartment, suite, or unit" 
+              required
+            ></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="checkout-city" class="form-label">City *</label>
+              <input 
+                type="text" 
+                id="checkout-city" 
+                class="form-control" 
+                placeholder="e.g. San Francisco" 
+                required 
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="checkout-postal" class="form-label">Postal / ZIP Code *</label>
+              <input 
+                type="text" 
+                id="checkout-postal" 
+                class="form-control" 
+                placeholder="e.g. 94107" 
+                required 
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="checkout-phone" class="form-label">Phone Number *</label>
+            <input 
+              type="tel" 
+              id="checkout-phone" 
+              class="form-control" 
+              placeholder="e.g. +1 555-0199" 
+              required 
+            />
+            <span class="form-text">Used for shipping & delivery confirmation updates.</span>
+          </div>
+
+          <div style="background: var(--bg-muted); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin: 1.5rem 0;">
+            <div style="font-weight: 700; font-size: 0.9rem; color: var(--secondary); margin-bottom: 0.25rem;">
+              💳 Payment Method
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary);">
+              Cash on Delivery / Artisan Direct Pay (Mock instant authorization)
+            </div>
+          </div>
+
+          <button type="submit" id="place-order-btn" class="btn btn-primary btn-block btn-lg">
+            Complete Order & Pay
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right: Order Summary Preview -->
+    <div class="summary-card">
+      <div class="summary-title">Order Items Preview</div>
+
+      <div class="checkout-items-preview" id="checkout-items-preview">
+        <!-- Rendered by orders.js -->
+        <div style="text-align: center; padding: 2rem 0; color: var(--text-muted);">
+          Loading items...
+        </div>
+      </div>
+
+      <div class="summary-row" style="border-top: 1px solid var(--border); padding-top: 0.75rem;">
+        <span>Packaging</span>
+        <span style="color: var(--success); font-weight: 600;">Luxury Wax Seal Box</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Delivery</span>
+        <span style="color: var(--success); font-weight: 600;">FREE</span>
+      </div>
+
+      <div class="summary-row total-row">
+        <span>Total Due</span>
+        <span id="checkout-total-amount" style="color: var(--primary);">$0.00</span>
+      </div>
+
+      <div style="margin-top: 1.25rem;">
+        <a href="/cart/" class="btn btn-outline btn-block btn-sm">
+          ← Modify Cart Items
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/orders.js' %}"></script>
+{% endblock %}
+
